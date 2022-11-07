@@ -1,29 +1,31 @@
-﻿int ConvertToTwoDigit (int Number)
+﻿int ConvertToThreeDigit (int Number)
 {
-    if (Number<10)
-        {
-            Console.WriteLine ("Ошибка!!! Число однозначное!!!");
-            return Number;
-        }
-    while (Number/100!=0)
+    if (Number<100)
+    {
+        Console.WriteLine ("Третьей цифры нет");
+        return Number;
+    }
+    else
+    {
+        while (Number/1000!=0)
         {
             Number = Number/10;
         }
-    return Number;
-}
+        return Number;
+    }
       
+}
 
-
-void ReturnSecondDigit (string? EnteredNumber)
+void ReturnThirdDigit (string? EnteredNumber)
 {
     bool NumberOrText = Int32.TryParse(EnteredNumber, out int Number);
     if (NumberOrText)
     {
-        Number=ConvertToTwoDigit(Number);
-        if (Number>=10)
+        Number=ConvertToThreeDigit(Number);
+        if (Number>=100)
         {
             Number = Number%10;
-            Console.WriteLine($"Вторая цифра введенного числа {Number}.");
+            Console.WriteLine($"Третья цифра введенного числа {Number}.");
         }
     }
     else
@@ -35,4 +37,4 @@ void ReturnSecondDigit (string? EnteredNumber)
 Console.Clear();
 Console.WriteLine("Пожалуйста, введите число");
 string? EnteredNumber = Console.ReadLine();
-ReturnSecondDigit (EnteredNumber);
+ReturnThirdDigit(EnteredNumber); 
